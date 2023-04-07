@@ -1,6 +1,6 @@
 # holbertonschool-unity
 
-<img src="https://skarredghost.com/wp-content/uploads/2021/02/unity-cross-platform-vr-xr-development.jpg" alt="AR/VR projects" />
+![AR/VR projects](https://skarredghost.com/wp-content/uploads/2021/02/unity-cross-platform-vr-xr-development.jpg)
 
  This repository contains 2 projects:
  - [Unity - User Interface](./unity-user_interface/)
