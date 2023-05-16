@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float groundDrag;
     public float jumpHeight;
     public float gravityScale = 5;
+    [SerializeField]
+    private bool isGrounded;
 
     private void Start()
     {
@@ -23,16 +25,25 @@ public class PlayerController : MonoBehaviour
     {
         TakeInput();
         rb.drag = groundDrag;
-        if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, 1.1f))
+        if (transform.position.y < -30)
         {
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            transform.position = new Vector3(0, 30, 0);
         }
     }
 
     private void FixedUpdate()
     {
+        isGrounded = Physics.Raycast(transform.position, -transform.up, 1.1f);
+
         MovePlayer();
-        rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+        }
+        else if (!isGrounded)
+        {
+            rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass * 2);
+        }
     }
 
     private void TakeInput()

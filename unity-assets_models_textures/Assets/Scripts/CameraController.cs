@@ -6,8 +6,7 @@ public class CameraController : MonoBehaviour
     public float timeOffset;
     public Vector3 posOffset;
     private Vector3 velocity;
-    public float mouseSensitivity = 0.5f;
-    private Vector3 currentRotation;
+    public float mouseSensitivity = 3f;
     private float rotationY;
     private float rotationX;
 
@@ -20,16 +19,18 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position, player.position + posOffset, ref velocity, timeOffset);
-        // float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        // float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        // rotationY += mouseX;
-        // rotationX += mouseY;
+        rotationY += mouseX;
+        rotationX += mouseY;
 
-        // rotationX = Mathf.Clamp(rotationX, -40, 40);
-        // Vector3 nextRotation = new Vector3(rotationX, rotationY);
-        // currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref velocity, 0.3f);
-        // transform.localEulerAngles += currentRotation;
-        // transform.position = player.position - (transform.forward * 3f);
+        rotationX = Mathf.Clamp(rotationX, -20, 40);
+        rotationY = Mathf.Clamp(rotationY, -60, 60);
+
+        transform.LookAt(player);
+        transform.RotateAround(player.position, new Vector3(1, 0, 0), rotationX);
+        transform.RotateAround(player.position, new Vector3(0, 1, 0), rotationY);
+        player.forward = transform.forward;
     }
 }
