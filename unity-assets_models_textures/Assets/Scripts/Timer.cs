@@ -1,25 +1,26 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Globalization;
 
 public class Timer : MonoBehaviour
 {
     public Text timerText;
-    private double second;
+    private float second;
     private int minute;
-    private string timerString;
     private string secondString;
 
     private void Update()
     {
-        second = System.Math.Round(second + Time.deltaTime, 2);
+        second += Time.deltaTime;
+
         if (second > 60)
         {
             minute++;
             second %= 60;
-        }
-        secondString = second < 10 ? ("0" + second) : second.ToString();
-        timerString = minute + ":" + secondString;
-        timerText.text = timerString;
+        } 
+        secondString = second.ToString("f2", new CultureInfo("en-US"));
+        secondString = second < 10 ? ("0" + secondString) : secondString;
+        timerText.text = minute + ":" + secondString;
     }
 }
 

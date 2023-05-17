@@ -23,24 +23,27 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        isGrounded = Physics.Raycast(transform.position, -transform.up, 1.25f);
+
         TakeInput();
         rb.drag = groundDrag;
+
         if (transform.position.y < -30)
         {
             transform.position = new Vector3(0, 30, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
     }
 
     private void FixedUpdate()
     {
-        isGrounded = Physics.Raycast(transform.position, -transform.up, 1.1f);
-
         MovePlayer();
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
-        }
-        else if (!isGrounded)
+
+        if (!isGrounded)
         {
             rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass * 2);
         }

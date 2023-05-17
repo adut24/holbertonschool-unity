@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.SmoothDamp(transform.position, player.position + posOffset, ref velocity, timeOffset);
+
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
@@ -26,7 +27,7 @@ public class CameraController : MonoBehaviour
         rotationX += mouseY;
 
         rotationX = Mathf.Clamp(rotationX, -20, 40);
-        rotationY = Mathf.Clamp(rotationY, -60, 60);
+        rotationY = Mathf.Clamp(rotationY, -70, 70);
 
         transform.LookAt(player);
         transform.RotateAround(player.position, new Vector3(1, 0, 0), rotationX);
