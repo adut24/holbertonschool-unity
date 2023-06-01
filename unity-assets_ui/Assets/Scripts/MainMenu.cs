@@ -1,14 +1,10 @@
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public static List<string> sceneHistory = new();
-
-    private void Awake() => DontDestroyOnLoad(gameObject);
-
-    private void Start() => sceneHistory.Add("MainMenu");
+    private void Start() => SceneHistory.sceneVisited.Add("MainMenu");
 
     /// <summary>
     /// Loads the level selected with <paramref name="level"/>.
@@ -16,7 +12,7 @@ public class MainMenu : MonoBehaviour
     /// <param name="level">Level to load.</param>
     public void LevelSelect(int level)
     {
-        sceneHistory.Add("Level0" + level);
+        SceneHistory.sceneVisited.Add("Level0" + level);
         SceneManager.LoadScene("Level0" + level);
     }
 
@@ -25,8 +21,12 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void Options()
     {
-        sceneHistory.Add("Options");
-        SceneManager.LoadScene("Options");
+        SceneHistory.sceneVisited.Add("Options");
+        SceneHistory.sceneObjects.Clear();
+        SceneHistory.sceneObjects = SceneManager.GetActiveScene().GetRootGameObjects().ToList();
+        foreach (GameObject obj in SceneHistory.sceneObjects)
+            obj.SetActive(false);
+        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
     }
 
     /// <summary>

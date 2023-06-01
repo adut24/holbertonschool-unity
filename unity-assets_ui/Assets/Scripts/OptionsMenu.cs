@@ -8,6 +8,8 @@ public class OptionsMenu : MonoBehaviour
     /// </summary>
     public void Back()
     {
-        SceneManager.LoadScene(MainMenu.sceneHistory[^2]);
+        foreach (GameObject obj in SceneHistory.sceneObjects)
+            obj.SetActive(true);
+        SceneManager.UnloadSceneAsync("Options");
     }
 }

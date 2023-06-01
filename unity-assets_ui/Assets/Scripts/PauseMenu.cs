@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,10 +52,22 @@ public class PauseMenu : MonoBehaviour
     /// <summary>
     /// Opens the main menu.
     /// </summary>
-    public void MainMenu() => SceneManager.LoadScene("MainMenu");
+    public void MainMenu()
+    {
+        SceneHistory.sceneVisited.Add("MainMenu");
+        SceneManager.LoadScene("MainMenu");
+    }
 
     /// <summary>
     /// Opens the options menu.
     /// </summary>
-    public void Options() => SceneManager.LoadScene("Options");
+    public void Options()
+    {
+        SceneHistory.sceneVisited.Add("Options");
+        SceneHistory.sceneObjects.Clear();
+        SceneHistory.sceneObjects = SceneManager.GetActiveScene().GetRootGameObjects().ToList();
+        foreach (GameObject obj in SceneHistory.sceneObjects)
+            obj.SetActive(false);
+        SceneManager.LoadScene("Options", LoadSceneMode.Additive);
+    }
 }
