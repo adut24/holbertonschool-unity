@@ -7,7 +7,9 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused;
     public GameObject pauseMenu;
     public Timer timer;
-    public CameraController cameraController;
+    private CameraController cameraController;
+
+    private void Start() => cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
 
     private void Update()
     {
@@ -55,6 +57,8 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneHistory.sceneVisited.Add("MainMenu");
+        Destroy(GameObject.FindWithTag("MainCamera"));
+        Destroy(GameObject.Find("MenuEvent"));
         SceneManager.LoadScene("MainMenu");
     }
 
