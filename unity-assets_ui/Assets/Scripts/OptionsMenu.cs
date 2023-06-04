@@ -16,9 +16,7 @@ public class OptionsMenu : MonoBehaviour
     public void Apply()
     {
         cameraController.isInverted = invertYToggle.isOn;
-        foreach (GameObject obj in SceneHistory.sceneObjects)
-            obj.SetActive(true);
-        SceneManager.UnloadSceneAsync("Options");
+        Back();
     }
 
     /// <summary>
