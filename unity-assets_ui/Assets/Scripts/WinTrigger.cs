@@ -9,10 +9,6 @@ public class WinTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.name == "Player")
-        {
-            timer.enabled = false;
-            textTimer.fontSize = 60;
-            textTimer.color = Color.green;
-        }
+            Timer.Win();
     }
 }

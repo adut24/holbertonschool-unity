@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public Text timerText;
-    public Canvas winCanvas;
-    public Canvas timerCanvas;
+    public static Text timerText;
+    public static Canvas winCanvas;
+    public static Canvas timerCanvas;
     private float second;
     private int minute;
     private string secondString;
@@ -28,18 +28,12 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// Displays the win message window and menu.
     /// </summary>
-    public void Win()
+    public static void Win()
     {
         winCanvas.gameObject.SetActive(true);
         timerCanvas.gameObject.SetActive(false);
         GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = false;
         GameObject.FindWithTag("MainCamera").GetComponent<CameraController>().enabled = false;
         GameObject.Find("WinCanvas/FinalTime").GetComponent<Text>().text = timerText.text;
-    }
-
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.name == "WinFlag")
-            Win();
     }
 }
