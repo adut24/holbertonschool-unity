@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Opens the main menu.
+    /// </summary>
+    public void MainMenu()
     {
-
+        SceneHistory.sceneVisited.Add("MainMenu");
+        Destroy(GameObject.Find("MenuEvent"));
+        SceneManager.LoadScene("MainMenu");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    /// <summary>
+    /// Loads the next scene.
+    /// </summary>
+    public void Next() => SceneManager.LoadScene(GetNextScene(SceneManager.GetActiveScene().name));
 
+    private string GetNextScene(string currentScene)
+    {
+        switch (currentScene)
+        {
+            case "Level01":
+                SceneHistory.sceneVisited.Add("Level02");
+                return "Level02";
+            case "Level02":
+                SceneHistory.sceneVisited.Add("Level03");
+                return "Level03";
+        }
+        return null;
     }
 }

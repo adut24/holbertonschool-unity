@@ -1,15 +1,23 @@
 using System.Globalization;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public static Text timerText;
-    public static Canvas winCanvas;
-    public static Canvas timerCanvas;
+    private static Text timerText;
+    private static Canvas winCanvas;
+    private static Canvas timerCanvas;
     private float second;
     private int minute;
     private string secondString;
+
+    private void Start()
+    {
+        timerCanvas = GameObject.Find("TimerCanvas").GetComponent<Canvas>();
+        timerText = timerCanvas.GetComponentInChildren<Text>();
+        winCanvas = FindObjectsOfType<Canvas>(true).First(canvas => canvas.gameObject.name == "WinCanvas");
+    }
 
     private void Update()
     {

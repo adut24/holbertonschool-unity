@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -14,20 +13,12 @@ public class CameraController : MonoBehaviour
     private float rotationY;
     public bool isInverted;
 
-    private void Awake() => DontDestroyOnLoad(gameObject);
+    private void Start() => transform.position = player.position + posOffset;
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name.Contains("Level") && !player)
-        {
-            player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-            transform.position = player.position + posOffset;
-        }
-        if (player)
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, player.position + posOffset, ref velocity, timeOffset);
-            RotateCamera();
-        }
+        transform.position = Vector3.SmoothDamp(transform.position, player.position + posOffset, ref velocity, timeOffset);
+        RotateCamera();
     }
 
     private void RotateCamera()

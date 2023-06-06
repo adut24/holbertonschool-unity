@@ -57,7 +57,6 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneHistory.sceneVisited.Add("MainMenu");
-        Destroy(GameObject.FindWithTag("MainCamera"));
         Destroy(GameObject.Find("MenuEvent"));
         SceneManager.LoadScene("MainMenu");
     }
