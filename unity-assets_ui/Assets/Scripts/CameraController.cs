@@ -12,13 +12,20 @@ public class CameraController : MonoBehaviour
     private float rotationX;
     private float rotationY;
     public bool isInverted;
-
-    private void Start() => transform.position = player.position + posOffset;
+    private bool isGamePaused = false; // Flag to track game pause state
+    public GameObject PauseMenu;
 
     private void Update()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, player.position + posOffset, ref velocity, timeOffset);
-        RotateCamera();
+        if (PauseMenu.activeSelf)
+            isGamePaused = true;
+        else
+            isGamePaused = false;
+        if (!isGamePaused)
+        {
+            transform.position = player.position + posOffset;
+            RotateCamera();
+        }
     }
 
     private void RotateCamera()
