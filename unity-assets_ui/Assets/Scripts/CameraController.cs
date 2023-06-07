@@ -6,22 +6,16 @@ public class CameraController : MonoBehaviour
     public float timeOffset;
     [SerializeField]
     private Vector3 posOffset = new(0, 0, -6);
-    private Vector3 velocity;
     [SerializeField]
     private float mouseSensitivity = 3f;
     private float rotationX;
     private float rotationY;
     public bool isInverted;
-    private bool isGamePaused = false; // Flag to track game pause state
     public GameObject PauseMenu;
 
     private void Update()
     {
-        if (PauseMenu.activeSelf)
-            isGamePaused = true;
-        else
-            isGamePaused = false;
-        if (!isGamePaused)
+        if (!PauseMenu.activeSelf)
         {
             transform.position = player.position + posOffset;
             RotateCamera();

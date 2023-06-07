@@ -49,7 +49,17 @@ public class PauseMenu : MonoBehaviour
     /// <summary>
     /// Restarts the current level.
     /// </summary>
-    public void Restart() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+            playerController.enabled = true;
+        }
+    }
 
     /// <summary>
     /// Opens the main menu.

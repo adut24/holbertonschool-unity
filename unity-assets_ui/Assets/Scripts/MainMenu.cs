@@ -14,6 +14,14 @@ public class MainMenu : MonoBehaviour
     {
         SceneHistory.sceneVisited.Add("Level0" + level);
         SceneManager.LoadScene("Level0" + level);
+        Time.timeScale = 1f;
+
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+            playerController.enabled = true;
+        }
     }
 
     /// <summary>
