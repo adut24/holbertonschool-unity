@@ -8,16 +8,35 @@ public class PlayerController : MonoBehaviour
     public int collectedCoins;
     public int lives;
     public int score;
+    public float moveSpeed;
+    private Vector2 moveDirection;
 
     private void Update()
     {
+        ProcessInputs();
         if (collectedCoins == 100)
             IncreaseNumberLife();
+    }
+    void FixedUpdate()
+    {
+        Move();
     }
 
     private void IncreaseNumberLife()
     {
         lives++;
         collectedCoins = 0;
+    }
+
+    void ProcessInputs()
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+
+        moveDirection = new Vector2(moveX, 0).normalized;
+    }
+
+    void Move()
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, 0);
     }
 }

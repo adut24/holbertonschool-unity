@@ -653,7 +653,7 @@ Transform:
   m_Children:
   - {fileID: 554660167}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &143455204
 GameObject:
@@ -6074,9 +6074,9 @@ CompositeCollider2D:
     m_ColliderPaths:
     - - X: 1420000000
         Y: -30000000
-      - X: 780000000
+      - X: 600000000
         Y: -30000000
-      - X: 780000000
+      - X: 600000000
         Y: -50000000
       - X: 1420000000
         Y: -50000000
@@ -6096,14 +6096,6 @@ CompositeCollider2D:
         Y: -50000000
       - X: 580000000
         Y: -50000000
-    - - X: 750000000
-        Y: -30000000
-      - X: 600000000
-        Y: -30000000
-      - X: 600000000
-        Y: -50000000
-      - X: 750000000
-        Y: -50000000
     - - X: 940000000
         Y: -240000000
       - X: 570000000
@@ -6120,10 +6112,6 @@ CompositeCollider2D:
       - {x: 144.00003, y: -5}
     - - {x: 141.99997, y: -5}
       - {x: 141.99997, y: -3}
-      - {x: 78, y: -3.0000293}
-      - {x: 78.00003, y: -5}
-    - - {x: 74.99997, y: -5}
-      - {x: 74.99997, y: -3}
       - {x: 60, y: -3.0000293}
       - {x: 60.000034, y: -5}
     - - {x: 57.99997, y: -5}
@@ -79227,6 +79215,7 @@ GameObject:
   - component: {fileID: 727354507}
   - component: {fileID: 727354510}
   - component: {fileID: 727354509}
+  - component: {fileID: 727354511}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -79299,7 +79288,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &727354509
 Rigidbody2D:
@@ -79348,6 +79337,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &727354511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727354506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79189ddaab57b0d488299622e9118dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectedCoinsText: {fileID: 0}
+  rb: {fileID: 727354509}
+  collectedCoins: 0
+  lives: 0
+  score: 0
+  moveSpeed: 9
 --- !u!1 &825532490
 GameObject:
   m_ObjectHideFlags: 0
@@ -79547,7 +79554,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &828133677
 GameObject:
@@ -83751,7 +83758,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020601132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72, y: -3.54, z: 0}
+  m_LocalPosition: {x: 71.5, y: -3.54, z: 0}
   m_LocalScale: {x: 0.2, y: 27.22125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84383,7 +84390,7 @@ RectTransform:
   m_Children:
   - {fileID: 167813231}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -84494,7 +84501,7 @@ Transform:
   - {fileID: 148611519}
   - {fileID: 1176097136}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1701810548
 GameObject:
@@ -85031,7 +85038,7 @@ Transform:
   - {fileID: 1777974587}
   - {fileID: 398343233}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117568770
 GameObject:
