@@ -9,18 +9,18 @@ public class PlayerController : MonoBehaviour
     public int lives;
     public int score;
     public float moveSpeed;
+    public bool isGoingForward;
     private Vector2 moveDirection;
 
     private void Update()
     {
         ProcessInputs();
+        isGoingForward = moveDirection.x > 0;
         if (collectedCoins == 100)
             IncreaseNumberLife();
     }
-    void FixedUpdate()
-    {
-        Move();
-    }
+    
+    void FixedUpdate() => Move();
 
     private void IncreaseNumberLife()
     {
@@ -31,12 +31,8 @@ public class PlayerController : MonoBehaviour
     void ProcessInputs()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
-
         moveDirection = new Vector2(moveX, 0).normalized;
     }
 
-    void Move()
-    {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, 0);
-    }
+    void Move() => rb.velocity = new Vector2(moveDirection.x * moveSpeed, 0);
 }
