@@ -59,6 +59,12 @@ public class PauseMenu : MonoBehaviour
             playerController.enabled = false;
             playerController.enabled = true;
         }
+        CameraController cameraController = FindObjectOfType<CameraController>();
+        if (cameraController != null)
+        {
+            cameraController.enabled = false;
+            cameraController.enabled = true;
+        }
     }
 
     /// <summary>
@@ -68,6 +74,7 @@ public class PauseMenu : MonoBehaviour
     {
         SceneHistory.sceneVisited.Add("MainMenu");
         Destroy(GameObject.Find("MenuEvent"));
+        Destroy(GameObject.FindWithTag("MainCamera"));
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -1,8 +1,10 @@
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform player;
+    private Transform player;
     public float timeOffset;
     [SerializeField]
     private Vector3 posOffset = new(0, 0, -6);
@@ -11,11 +13,22 @@ public class CameraController : MonoBehaviour
     private float rotationX;
     private float rotationY;
     public bool isInverted;
-    public GameObject PauseMenu;
+    private GameObject pauseMenu;
+
+    private void Awake() => DontDestroyOnLoad(gameObject);
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        transform.position = player.position + posOffset;
+        pauseMenu = FindObjectsOfType<Canvas>(true).First(canvas => canvas.gameObject.name == "PauseCanvas").gameObject;
+    }
 
     private void Update()
     {
-        if (!PauseMenu.activeSelf)
+        if (SceneManager.GetActiveScene().name.Contains("Level") && !player)
+            Start();
+        if (!pauseMenu.activeSelf)
         {
             transform.position = player.position + posOffset;
             RotateCamera();

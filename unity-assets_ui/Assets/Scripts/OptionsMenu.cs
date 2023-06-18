@@ -9,7 +9,7 @@ public class OptionsMenu : MonoBehaviour
 
     private void Start()
     {
-        cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();
+        cameraController = FindObjectOfType<CameraController>();
         invertYToggle.isOn = cameraController.isInverted;
     }
 
@@ -25,7 +25,11 @@ public class OptionsMenu : MonoBehaviour
     public void Back()
     {
         foreach (GameObject obj in SceneHistory.sceneObjects)
-            obj.SetActive(true);
+        {
+            if (obj.name != "WinCanvas")
+                obj.SetActive(true);
+        }
+
         SceneManager.UnloadSceneAsync("Options");
     }
 }

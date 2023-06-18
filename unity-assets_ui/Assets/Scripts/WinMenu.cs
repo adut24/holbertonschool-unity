@@ -10,13 +10,29 @@ public class WinMenu : MonoBehaviour
     {
         SceneHistory.sceneVisited.Add("MainMenu");
         Destroy(GameObject.Find("MenuEvent"));
+        Destroy(GameObject.FindWithTag("MainCamera"));
         SceneManager.LoadScene("MainMenu");
     }
 
     /// <summary>
     /// Loads the next scene.
     /// </summary>
-    public void Next() => SceneManager.LoadScene(GetNextScene(SceneManager.GetActiveScene().name));
+    public void Next()
+    {
+        SceneManager.LoadScene(GetNextScene(SceneManager.GetActiveScene().name));
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.enabled = false;
+            playerController.enabled = true;
+        }
+        CameraController cameraController = FindObjectOfType<CameraController>();
+        if (cameraController != null)
+        {
+            cameraController.enabled = false;
+            cameraController.enabled = true;
+        }
+    }
 
     private string GetNextScene(string currentScene)
     {
