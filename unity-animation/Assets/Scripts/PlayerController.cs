@@ -8,11 +8,11 @@ public class PlayerController : MonoBehaviour
     public float groundDrag;
     private float horizontalInput;
     private float verticalInput;
-
     public float jumpHeight = 5f;
     public float gravityScale = 9.8f;
     [SerializeField]
     private bool isGrounded;
+    public Animator animator;
 
     private void Start()
     {
@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = (transform.forward * verticalInput) + (transform.right * horizontalInput);
+        bool isMoving = (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0);
+        animator.SetBool("IsMoving", isMoving);
         rb.AddForce(moveDirection * speed * 10f, ForceMode.Force);
     }
 

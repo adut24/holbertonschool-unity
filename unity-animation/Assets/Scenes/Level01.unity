@@ -1458,7 +1458,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerCanvas: {fileID: 6049041693826355222}
   playerController: {fileID: 379737512}
-  animator: {fileID: 9031622033864025374}
 --- !u!4 &377041507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79309e0d9e8ae478d9325160199710f9, type: 3}
@@ -1584,6 +1583,7 @@ MonoBehaviour:
   jumpHeight: 100
   gravityScale: 9.8
   isGrounded: 0
+  animator: {fileID: 9031622033864025374}
 --- !u!114 &379737518
 MonoBehaviour:
   m_ObjectHideFlags: 0
