@@ -13,6 +13,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
+        if (!cameraController)
+            Start();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isPaused)

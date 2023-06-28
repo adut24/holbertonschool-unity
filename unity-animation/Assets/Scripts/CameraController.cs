@@ -49,6 +49,5 @@ public class CameraController : MonoBehaviour
         transform.LookAt(player);
         transform.RotateAround(player.position, new Vector3(1, 0, 0), rotationX);
         transform.RotateAround(player.position, new Vector3(0, 1, 0), rotationY);
-        player.forward = transform.forward;
     }
 }

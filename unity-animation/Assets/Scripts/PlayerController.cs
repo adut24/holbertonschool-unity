@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
+    public Rigidbody rb;
     private Vector3 moveDirection;
     public float speed;
     public float groundDrag;
@@ -13,11 +13,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool isGrounded;
     public Animator animator;
+    private Transform modelTransform;
+    private Vector3 initialOffset;
+    private Quaternion targetRotation;
+    public float rotationSpeed = 10f;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        modelTransform = transform.GetChild(0);
+        initialOffset = modelTransform.position - transform.position;
     }
 
     private void Update()
@@ -29,6 +33,8 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0, 30, 0);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             Jump();
+        if (moveDirection != Vector3.zero)
+            targetRotation = Quaternion.LookRotation(moveDirection);
     }
 
     private void FixedUpdate()
@@ -49,9 +55,10 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = (transform.forward * verticalInput) + (transform.right * horizontalInput);
-        bool isMoving = (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0);
-        animator.SetBool("IsMoving", isMoving);
+        animator.SetBool("IsMoving", (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0));
         rb.AddForce(moveDirection * speed * 10f, ForceMode.Force);
+        modelTransform.rotation = Quaternion.Slerp(modelTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        modelTransform.position = transform.position + initialOffset;
     }
 
     private void Jump() => rb.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
