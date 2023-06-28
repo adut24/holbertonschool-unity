@@ -32,7 +32,11 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < -30)
             transform.position = new Vector3(0, 30, 0);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            animator.SetBool("IsJumping", !isGrounded);
             Jump();
+        }
+        animator.SetBool("IsJumping", !isGrounded);
         if (moveDirection != Vector3.zero)
             targetRotation = Quaternion.LookRotation(moveDirection);
     }
