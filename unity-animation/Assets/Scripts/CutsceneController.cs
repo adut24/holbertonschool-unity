@@ -5,6 +5,8 @@ public class CutsceneController : MonoBehaviour
 {
     public GameObject timerCanvas;
     public PlayerController playerController;
+    public Animator animator;
+    public string introNumber;
     private GameObject mainCamera;
 
     void Awake()
@@ -12,6 +14,8 @@ public class CutsceneController : MonoBehaviour
         mainCamera = FindObjectsOfType<Camera>(true).First(cam => cam.tag == "MainCamera").gameObject;
         mainCamera.SetActive(false);
     }
+
+    void Start() => animator.Play(introNumber);
 
     private void GameStart()
     {

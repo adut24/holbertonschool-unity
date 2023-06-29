@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1.25f);
         TakeInput();
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        bool isFallingAnimationPlaying = stateInfo.IsName("Falling");
+        bool isFallingAnimPlaying = stateInfo.IsName("Falling");
 
         rb.drag = groundDrag;
 
@@ -38,10 +38,9 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0, 30, 0);
             animator.SetTrigger("Falling");
         }
-        else if (transform.position.y < 2 && isFallingAnimationPlaying)
+        else if (transform.position.y < 2 && isFallingAnimPlaying)
         {
             animator.ResetTrigger("Falling");
-            animator.Play("Happy Idle");
         }
 
         animator.SetBool("FallOnGround", isGrounded);

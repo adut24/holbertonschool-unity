@@ -1458,6 +1458,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerCanvas: {fileID: 6049041693826355222}
   playerController: {fileID: 379737512}
+  animator: {fileID: 365599817}
+  introNumber: Intro01
 --- !u!4 &377041507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79309e0d9e8ae478d9325160199710f9, type: 3}
@@ -9037,6 +9039,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3294294222130193927, guid: c0b4291c6662da24393ba1da5fa5db56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 9031622034214552180, guid: c0b4291c6662da24393ba1da5fa5db56, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -9091,6 +9097,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9031622034214552186, guid: c0b4291c6662da24393ba1da5fa5db56, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031622034214552187, guid: c0b4291c6662da24393ba1da5fa5db56, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031622034214552187, guid: c0b4291c6662da24393ba1da5fa5db56, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031622034214552187, guid: c0b4291c6662da24393ba1da5fa5db56, type: 3}
+      propertyPath: m_Center.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
