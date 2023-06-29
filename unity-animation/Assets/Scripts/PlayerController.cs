@@ -30,7 +30,16 @@ public class PlayerController : MonoBehaviour
         TakeInput();
         rb.drag = groundDrag;
         if (transform.position.y < -30)
+        {
             transform.position = new Vector3(0, 30, 0);
+            animator.SetBool("IsFalling", true);
+        }
+        if (transform.position.y < 2)
+        {
+            animator.enabled = false;
+            animator.enabled = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             animator.SetBool("IsJumping", !isGrounded);
