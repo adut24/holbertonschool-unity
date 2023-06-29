@@ -28,27 +28,37 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1.25f);
         TakeInput();
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        bool isFallingAnimationPlaying = stateInfo.IsName("Falling");
+
         rb.drag = groundDrag;
+
         if (transform.position.y < -30)
         {
             transform.position = new Vector3(0, 30, 0);
-            animator.SetBool("IsFalling", true);
+            animator.SetTrigger("Falling");
         }
-        if (transform.position.y < 2)
+        else if (transform.position.y < 2 && isFallingAnimationPlaying)
         {
-            animator.enabled = false;
-            animator.enabled = true;
+            animator.ResetTrigger("Falling");
+            animator.Play("Happy Idle");
         }
+
+        animator.SetBool("FallOnGround", isGrounded);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            animator.SetBool("IsJumping", !isGrounded);
+            animator.SetBool("IsJumping", true);
             Jump();
         }
+
         animator.SetBool("IsJumping", !isGrounded);
+        animator.SetBool("IsMoving", (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0));
+
         if (moveDirection != Vector3.zero)
             targetRotation = Quaternion.LookRotation(moveDirection);
     }
+
 
     private void FixedUpdate()
     {
