@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
         else if (transform.position.y < 2 && isFallingAnimPlaying)
         {
             animator.ResetTrigger("Falling");
+            modelTransform.position = new Vector3(modelTransform.position.x, -2.7f, modelTransform.position.z);
+        }
+        else if (stateInfo.IsName("Falling Flat Impact"))
+        {
+            modelTransform.position = new Vector3(modelTransform.position.x, -1f, modelTransform.position.z);
         }
 
         animator.SetBool("FallOnGround", isGrounded);
