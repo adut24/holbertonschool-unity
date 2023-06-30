@@ -4,15 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
-    private Transform player;
+    public bool isInverted;
     public float timeOffset;
-    [SerializeField]
-    private Vector3 posOffset = new(0, 0, -6);
-    [SerializeField]
-    private float mouseSensitivity = 3f;
+    public Vector3 posOffset = new(0, 0, -6);
+    public float mouseSensitivity = 3f;
+    private Transform player;
     private float rotationX;
     private float rotationY;
-    public bool isInverted;
     private GameObject pauseMenu;
 
     private void Awake() => DontDestroyOnLoad(gameObject);

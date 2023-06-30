@@ -4,9 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    private bool isPaused;
     public GameObject pauseMenu;
     public Timer timer;
+    private bool isPaused;
     private CameraController cameraController;
 
     private void Start() => cameraController = GameObject.FindWithTag("MainCamera").GetComponent<CameraController>();

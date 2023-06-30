@@ -3,33 +3,33 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
-    private Vector3 moveDirection;
+    public Animator animator;
     public float speed;
     public float groundDrag;
     private float horizontalInput;
     private float verticalInput;
     public float jumpHeight = 5f;
     public float gravityScale = 9.8f;
+    public float rotationSpeed = 10f;
     [SerializeField]
     private bool isGrounded;
-    public Animator animator;
     private Transform modelTransform;
     private Vector3 initialOffset;
     private Quaternion targetRotation;
-    public float rotationSpeed = 10f;
+    private AnimatorStateInfo stateInfo;
+    private Vector3 moveDirection;
 
     private void Start()
     {
         modelTransform = transform.GetChild(0);
         initialOffset = modelTransform.position - transform.position;
+        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
 
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1.25f);
         TakeInput();
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        bool isFallingAnimPlaying = stateInfo.IsName("Falling");
 
         rb.drag = groundDrag;
 
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(0, 30, 0);
             animator.SetTrigger("Falling");
         }
-        else if (transform.position.y < 2 && isFallingAnimPlaying)
+        else if (transform.position.y < 2 && stateInfo.IsName("Falling"))
         {
             animator.ResetTrigger("Falling");
             modelTransform.position = new Vector3(modelTransform.position.x, -2.7f, modelTransform.position.z);
