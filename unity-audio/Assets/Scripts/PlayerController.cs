@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float speed;
     public float groundDrag;
+    public AudioSource audioSource;
     private float horizontalInput;
     private float verticalInput;
     public float jumpHeight = 5f;
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        audioSource.Stop();
         if (!isGrounded)
             rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass * 2);
     }
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
         moveDirection = (transform.forward * verticalInput) + (transform.right * horizontalInput);
         animator.SetBool("IsMoving", (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0));
         rb.AddForce(moveDirection * speed * 10f, ForceMode.Force);
+        audioSource.Play();
         modelTransform.rotation = Quaternion.Slerp(modelTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         modelTransform.position = transform.position + initialOffset;
     }
