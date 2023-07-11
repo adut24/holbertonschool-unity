@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,7 +7,8 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float speed;
     public float groundDrag;
-    public AudioSource audioSource;
+    public AudioSource runningSound;
+    public AudioSource landingSound;
     private float horizontalInput;
     private float verticalInput;
     public float jumpHeight = 5f;
@@ -24,11 +26,11 @@ public class PlayerController : MonoBehaviour
     {
         modelTransform = transform.GetChild(0);
         initialOffset = modelTransform.position - transform.position;
-        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
     }
 
     private void Update()
     {
+        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1.25f);
         TakeInput();
 
@@ -36,13 +38,13 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -30)
         {
-            transform.position = new Vector3(0, 30, 0);
+            transform.position = new Vector3(0, 20, 0);
             animator.SetTrigger("Falling");
+            landingSound.PlayDelayed(0.75f);
         }
         else if (transform.position.y < 2 && stateInfo.IsName("Falling"))
         {
             animator.ResetTrigger("Falling");
-            modelTransform.position = new Vector3(modelTransform.position.x, -2.7f, modelTransform.position.z);
         }
         else if (stateInfo.IsName("Falling Flat Impact"))
         {
@@ -57,6 +59,9 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        if (isGrounded && moveDirection != Vector3.zero && !runningSound.isPlaying)
+            runningSound.Play();
+
         animator.SetBool("IsJumping", !isGrounded);
         animator.SetBool("IsMoving", (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0));
 
@@ -64,11 +69,9 @@ public class PlayerController : MonoBehaviour
             targetRotation = Quaternion.LookRotation(moveDirection);
     }
 
-
     private void FixedUpdate()
     {
         MovePlayer();
-        audioSource.Stop();
         if (!isGrounded)
             rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass * 2);
     }
@@ -86,7 +89,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = (transform.forward * verticalInput) + (transform.right * horizontalInput);
         animator.SetBool("IsMoving", (Mathf.Abs(verticalInput) > 0) || (Mathf.Abs(horizontalInput) > 0));
         rb.AddForce(moveDirection * speed * 10f, ForceMode.Force);
-        audioSource.Play();
         modelTransform.rotation = Quaternion.Slerp(modelTransform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         modelTransform.position = transform.position + initialOffset;
     }
