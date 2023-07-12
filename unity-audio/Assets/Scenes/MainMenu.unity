@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19196136, g: 0.5947663, b: 0.7739415, a: 1}
+  m_IndirectSpecularColor: {r: 0.191991, g: 0.5946723, b: 0.7773275, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -526,6 +526,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7465bfb5f35d4ff41bb2acd4bdb92b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 1d3ef287161c6411e9d4795cc345948d, type: 2}
+  cam: {fileID: 1643147093}
 --- !u!4 &184346451
 Transform:
   m_ObjectHideFlags: 0
@@ -1164,7 +1166,7 @@ GameObject:
   - component: {fileID: 1009142868}
   m_Layer: 0
   m_Name: Wallpaper
-  m_TagString: Untagged
+  m_TagString: BGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

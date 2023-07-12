@@ -1,10 +1,31 @@
+using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private void Start() => SceneHistory.sceneVisited.Add("MainMenu");
+    public AudioMixer mixer;
+    public CameraController cam;
+
+    private void Start()
+    {
+        ApplyStoredParameter();
+        SceneHistory.sceneVisited.Add("MainMenu");
+    }
+
+    private void ApplyStoredParameter()
+    {
+        float storedBGMVolume = PlayerPrefs.GetFloat("bgmVol", 1f);
+        mixer.SetFloat("bgmVol", storedBGMVolume != 0 ? 20 * Mathf.Log10(storedBGMVolume) : -80f);
+        float storedSFXVolume = PlayerPrefs.GetFloat("sfxVol", 1f);
+        float volumeModifier = storedSFXVolume != 0 ? (20 * Mathf.Log10(storedSFXVolume)) : -80f;
+        mixer.SetFloat("runningVol", volumeModifier - 20);
+        mixer.SetFloat("landingVol", volumeModifier + 2);
+        mixer.SetFloat("ambVol", volumeModifier + 5);
+        cam.isInverted = Convert.ToBoolean(PlayerPrefs.GetInt("invertedY"));
+    }
 
     /// <summary>
     /// Loads the level selected with <paramref name="level"/>.
@@ -32,7 +53,11 @@ public class MainMenu : MonoBehaviour
         SceneHistory.sceneObjects.Clear();
         SceneHistory.sceneObjects = SceneManager.GetActiveScene().GetRootGameObjects().ToList();
         foreach (GameObject obj in SceneHistory.sceneObjects)
-            obj.SetActive(false);
+        {
+            if (obj.name != "Wallpaper")
+                obj.SetActive(false);
+        }
+
         SceneManager.LoadScene("Options", LoadSceneMode.Additive);
     }
 

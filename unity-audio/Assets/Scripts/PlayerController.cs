@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -19,7 +18,6 @@ public class PlayerController : MonoBehaviour
     private Transform modelTransform;
     private Vector3 initialOffset;
     private Quaternion targetRotation;
-    private AnimatorStateInfo stateInfo;
     private Vector3 moveDirection;
 
     private void Start()
@@ -30,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
         isGrounded = Physics.Raycast(transform.position, -transform.up, 1.25f);
         TakeInput();
 
@@ -40,7 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(0, 20, 0);
             animator.SetTrigger("Falling");
-            landingSound.PlayDelayed(0.75f);
+            landingSound.PlayDelayed(0.71f);
         }
         else if (transform.position.y < 2 && stateInfo.IsName("Falling"))
         {

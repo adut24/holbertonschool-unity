@@ -1,11 +1,14 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public Timer timer;
+    public AudioMixerSnapshot paused;
+    public AudioMixerSnapshot unpaused;
     private bool isPaused;
     private CameraController cameraController;
 
@@ -34,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         timer.enabled = false;
         cameraController.enabled = false;
+        paused.TransitionTo(.01f);
     }
 
     /// <summary>
@@ -46,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
         timer.enabled = true;
         cameraController.enabled = true;
+        unpaused.TransitionTo(.01f);
     }
 
     /// <summary>
@@ -89,7 +94,11 @@ public class PauseMenu : MonoBehaviour
         SceneHistory.sceneObjects.Clear();
         SceneHistory.sceneObjects = SceneManager.GetActiveScene().GetRootGameObjects().ToList();
         foreach (GameObject obj in SceneHistory.sceneObjects)
-            obj.SetActive(false);
+        {
+            if (obj.tag != "BGM")
+                obj.SetActive(false);
+        }
+
         SceneManager.LoadScene("Options", LoadSceneMode.Additive);
     }
 }

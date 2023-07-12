@@ -22,6 +22,6 @@ public class CutsceneController : MonoBehaviour
         mainCamera.SetActive(true);
         playerController.enabled = true;
         timerCanvas.SetActive(true);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }
