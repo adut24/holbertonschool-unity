@@ -37,7 +37,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         timer.enabled = false;
         cameraController.enabled = false;
-        paused.TransitionTo(.01f);
+        paused.TransitionTo(0f);
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
         timer.enabled = true;
         cameraController.enabled = true;
-        unpaused.TransitionTo(.01f);
+        unpaused.TransitionTo(0f);
     }
 
     /// <summary>
