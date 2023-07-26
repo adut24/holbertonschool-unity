@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="Holberton_bigger" size="1.000000 0.998267" />
+    <ImageTarget name="Holberton_smaller" size="0.061000 0.060894" />
     <ImageTarget name="Holberton" size="0.135000 0.134766" />
   </Tracking>
 </QCARConfig>
