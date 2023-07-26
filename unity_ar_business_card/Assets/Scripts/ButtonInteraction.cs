@@ -9,5 +9,5 @@ public class ButtonInteraction : MonoBehaviour
     /// Opens the link in the browser according to the button pressed.
     /// </summary>
     /// <param name="link">Link to send as an URL</param>
-    public void OpenLink(string link) => Application.OpenURL(gameObject.name == "MailButton" ? "mailto:" + link : link);
+    public void OpenLink(string link) => Application.OpenURL(link);
 }
