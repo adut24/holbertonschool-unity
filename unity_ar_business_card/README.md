@@ -1,6 +1,6 @@
 # Unity - AR Business Card
 
-<img src="https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2019/1/ffa666d97ab0c121ebb1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20230729%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230729T123121Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=24596baddc7ad3ed1f765a364c399780b79411382bd8872a8b262b74066cebfe"/>
+![Target](https://s3.eu-west-3.amazonaws.com/hbtn.intranet/uploads/medias/2019/1/ffa666d97ab0c121ebb1.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4MYA5JM5DUTZGMZG%2F20230729%2Feu-west-3%2Fs3%2Faws4_request&X-Amz-Date=20230729T123121Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=24596baddc7ad3ed1f765a364c399780b79411382bd8872a8b262b74066cebfe)
 
 ## Installation and Usage
 **Android only**
