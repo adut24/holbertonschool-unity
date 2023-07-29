@@ -1,6 +1,5 @@
 # Unity - AR Business Card
-
-![Target](https://drive.google.com/file/d/1UcACu0MSpWvFnqg5w1CdhcCi8mCqgz2J/view?usp=sharing)
+![Imgur](https://i.imgur.com/z0n2EbN.png)
 
 ## Installation and Usage
 **Android only**
