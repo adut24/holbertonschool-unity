@@ -3,11 +3,10 @@
 
 ## Installation and Usage
 **Android only**
-- Click [here](https://github.com/adut24/holbertonschool-unity/releases/tag/v1.0-Unity-AR-Business-Card) to go to the download page of the application.
-- Click on `unity-ar_business_card-Android.zip`.
+- Click [here](https://github.com/adut24/holbertonschool-unity/releases/tag/v1.0-Unity-AR-Business-Card) to go to the download page of the application and click on `unity-ar_business_card-Android.zip` to download it.
 - Unzip the archive and transfer `ARBusinessCard.apk` to your phone.
-- Allow unknown sources to be installed in `Security`
-- Launch the application and scan the image above
+- Allow unknown sources to be installed in `Security` and click on the `apk` file to install it.
+- Launch the application and scan the image above. Ensure you are in a room with enough light and turn your phone to landscape for a better view.
 
 ## Tasks
 ### [0. Let's see Paul Allen's card](./0-layout)
