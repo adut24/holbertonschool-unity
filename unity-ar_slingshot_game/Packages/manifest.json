@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.feature.ar": "1.0.1",
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.xr.arcore": "5.0.7",
     "com.unity.xr.arfoundation": "5.0.7",
