@@ -7,7 +7,7 @@ using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 /// <summary>
-/// 
+/// Manages the detection of the planes.
 /// </summary>
 [RequireComponent(typeof(ARRaycastManager), typeof(ARPlaneManager))]
 public class PlaneDetectionManager : MonoBehaviour
@@ -24,6 +24,8 @@ public class PlaneDetectionManager : MonoBehaviour
     private TextMeshProUGUI _text;
     [SerializeField]
     private Button _startButton;
+    [SerializeField]
+    private TargetMovement _targetMovement;
     private List<ARRaycastHit> _hits = new List<ARRaycastHit>();
     private bool _planeSelectionDone = false;
 
@@ -41,7 +43,7 @@ public class PlaneDetectionManager : MonoBehaviour
         EnhancedTouch.EnhancedTouchSupport.Disable();
         EnhancedTouch.Touch.onFingerDown -= OnFingerDown;
     }
-    
+
     private void OnPlanesChanged(ARPlanesChangedEventArgs args)
     {
         if (!_planeSelectionDone)
@@ -58,21 +60,21 @@ public class PlaneDetectionManager : MonoBehaviour
 
         if (_raycastManager.Raycast(finger.currentTouch.screenPosition, _hits, TrackableType.PlaneWithinPolygon))
         {
-            ARPlane hitPlane = _hits[0].trackable as ARPlane;
-
             _planeManager.requestedDetectionMode = PlaneDetectionMode.None;
-
-            foreach (var plane in _planeManager.trackables)
+            ARPlane hitPlane = _planeManager.GetPlane(_hits[0].trackableId);
+            foreach (ARPlane plane in _planeManager.trackables)
             {
                 if (plane != hitPlane)
                     plane.gameObject.SetActive(false);
                 else
-                    plane.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;
             }
             _planeSelectionDone = true;
-
             _backgroundImage.color = Color.clear;
             _text.gameObject.SetActive(false);
+            _targetMovement.Plane = hitPlane;
+            _targetMovement.PlaneBoundary = hitPlane.boundary;
+            _targetMovement.enabled = true;
             _startButton.gameObject.SetActive(true);
         }
     }

@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Camera: {fileID: 952889616}
   m_OriginBaseGameObject: {fileID: 104325155}
   m_CameraFloorOffsetObject: {fileID: 0}
-  m_RequestedTrackingOriginMode: 2
+  m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
 --- !u!1 &237155806
 GameObject:
@@ -373,7 +373,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -670,7 +670,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  m_HasMigratedActions: 1
 --- !u!114 &952889613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1019,6 +1018,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127926503}
   m_CullTransparentMesh: 1
+--- !u!1 &1375559975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1375559977}
+  - component: {fileID: 1375559976}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1375559976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375559975}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db3e75be0729724c8c11fb75e47c31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2529193828388268873, guid: 02fe54762a739484ebd218c4420d784f, type: 3}
+--- !u!4 &1375559977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375559975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1509743133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,7 +1095,7 @@ MonoBehaviour:
   m_Camera: {fileID: 952889616}
   m_OriginBaseGameObject: {fileID: 1509743133}
   m_CameraFloorOffsetObject: {fileID: 242563850}
-  m_RequestedTrackingOriginMode: 2
+  m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
 --- !u!4 &1509743135
 Transform:
@@ -1268,7 +1312,7 @@ MonoBehaviour:
   m_Camera: {fileID: 952889616}
   m_OriginBaseGameObject: {fileID: 1901718761}
   m_CameraFloorOffsetObject: {fileID: 0}
-  m_RequestedTrackingOriginMode: 2
+  m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
 --- !u!114 &1901718766
 MonoBehaviour:
@@ -1301,6 +1345,7 @@ MonoBehaviour:
   _backgroundImage: {fileID: 1127926505}
   _text: {fileID: 945275596}
   _startButton: {fileID: 1118412434}
+  _targetMovement: {fileID: 1375559976}
 --- !u!114 &1901718768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,3 +1369,4 @@ SceneRoots:
   - {fileID: 1509743135}
   - {fileID: 237155809}
   - {fileID: 742332659}
+  - {fileID: 1375559977}
