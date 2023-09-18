@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Manages the scale of the target depending on the distance with the camera.
+/// </summary>
 public class ScaleOnDistance : MonoBehaviour
 {
     private Transform _arCamera;
@@ -9,15 +12,16 @@ public class ScaleOnDistance : MonoBehaviour
     private void Update()
     {
         float distance = Vector3.Distance(transform.position, _arCamera.position);
-        float scaleFactor = CalculateScaleFactor(distance);
 
-        transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+        transform.localScale = CalculateScaleFactor(distance);
     }
 
-    private float CalculateScaleFactor(float distance)
+    private Vector3 CalculateScaleFactor(float distance)
     {
         float scaleFactor = Mathf.Clamp01(1 - (distance / 5f));
 
-        return Mathf.Lerp(0.0002f, 0.15f, scaleFactor);
+        scaleFactor = Mathf.Lerp(0.0002f, 0.15f, scaleFactor);
+
+        return new Vector3(scaleFactor, scaleFactor, scaleFactor);
     }
 }

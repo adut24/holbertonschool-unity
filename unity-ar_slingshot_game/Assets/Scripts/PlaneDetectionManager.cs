@@ -91,7 +91,7 @@ public class PlaneDetectionManager : MonoBehaviour
 
             GameObject obj = Instantiate(_prefab, spawnPosition, Quaternion.identity);
 
-            obj.GetComponent<TargetMovement>().PlaneBoundary = plane.boundary;
+            obj.GetComponent<TargetMovement>().PlaneBoundary = plane.boundary.ToArray();
         }
     }
 

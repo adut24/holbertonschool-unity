@@ -1,6 +1,8 @@
 using UnityEngine;
-using Unity.Collections;
 
+/// <summary>
+/// Manages the target's movements.
+/// </summary>
 public class TargetMovement : MonoBehaviour
 {
     [SerializeField]
@@ -12,9 +14,7 @@ public class TargetMovement : MonoBehaviour
     private float _maxZ;
     private Vector3 _targetPosition;
 
-    public NativeArray<Vector2> PlaneBoundary { get; set; }
-
-    ~TargetMovement() => PlaneBoundary.Dispose();
+    public Vector2[] PlaneBoundary { get; set; }
 
     private void Start()
     {
@@ -48,7 +48,7 @@ public class TargetMovement : MonoBehaviour
         }
     }
 
-    void RandomizeTargetPosition()
+    private void RandomizeTargetPosition()
     {
         float randomX = Random.Range(_minX, _maxX);
         float randomZ = Random.Range(_minZ, _maxZ);
