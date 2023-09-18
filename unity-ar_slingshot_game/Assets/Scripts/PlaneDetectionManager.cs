@@ -25,7 +25,9 @@ public class PlaneDetectionManager : MonoBehaviour
     [SerializeField]
     private Button _startButton;
     [SerializeField]
-    private TargetMovement _targetMovement;
+    private GameObject _prefab;
+    [SerializeField]
+    private int _numberTarget = 5;
     private List<ARRaycastHit> _hits = new List<ARRaycastHit>();
     private bool _planeSelectionDone = false;
 
@@ -58,24 +60,46 @@ public class PlaneDetectionManager : MonoBehaviour
         if (finger.index != 0)
             return;
 
-        if (_raycastManager.Raycast(finger.currentTouch.screenPosition, _hits, TrackableType.PlaneWithinPolygon))
+        if (_raycastManager.Raycast(finger.currentTouch.screenPosition, _hits, TrackableType.PlaneWithinPolygon) && !_planeSelectionDone)
         {
             _planeManager.requestedDetectionMode = PlaneDetectionMode.None;
             ARPlane hitPlane = _planeManager.GetPlane(_hits[0].trackableId);
+
             foreach (ARPlane plane in _planeManager.trackables)
             {
                 if (plane != hitPlane)
                     plane.gameObject.SetActive(false);
-                else
-                    plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;
+                // else
+                //     plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;
             }
+
             _planeSelectionDone = true;
             _backgroundImage.color = Color.clear;
             _text.gameObject.SetActive(false);
-            _targetMovement.Plane = hitPlane;
-            _targetMovement.PlaneBoundary = hitPlane.boundary;
-            _targetMovement.enabled = true;
             _startButton.gameObject.SetActive(true);
+
+            InstantiateTarget(hitPlane);
         }
+    }
+
+    private void InstantiateTarget(ARPlane plane)
+    {
+        for (int i = 0; i < _numberTarget; i++)
+        {
+            Vector2 randomPosition = GetRandomPointOnPlane(plane);
+            Vector3 spawnPosition = new Vector3(randomPosition.x, plane.transform.position.y, randomPosition.y);
+
+            GameObject obj = Instantiate(_prefab, spawnPosition, Quaternion.identity);
+
+            obj.GetComponent<TargetMovement>().PlaneBoundary = plane.boundary;
+        }
+    }
+
+    private Vector2 GetRandomPointOnPlane(ARPlane plane)
+    {
+        Vector2 min = new Vector2(plane.center.x - plane.extents.x / 2, plane.center.z - plane.extents.y / 2);
+        Vector2 max = new Vector2(plane.center.x + plane.extents.x / 2, plane.center.z + plane.extents.y / 2);
+
+        return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
     }
 }
