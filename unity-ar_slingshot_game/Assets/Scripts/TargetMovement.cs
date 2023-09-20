@@ -16,7 +16,7 @@ public class TargetMovement : MonoBehaviour
 
     public Vector2[] PlaneBoundary { get; set; }
 
-    private void Start()
+    private void OnEnable()
     {
         AssignMinMaxValue();
         RandomizeTargetPosition();

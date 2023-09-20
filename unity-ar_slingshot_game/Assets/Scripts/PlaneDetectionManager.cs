@@ -28,7 +28,10 @@ public class PlaneDetectionManager : MonoBehaviour
     private GameObject _prefab;
     [SerializeField]
     private int _numberTarget = 5;
+    [SerializeField]
+    private GameObject _canvas;
     private List<ARRaycastHit> _hits = new List<ARRaycastHit>();
+    private List<TargetMovement> _targetMovements = new List<TargetMovement>();
     private bool _planeSelectionDone = false;
 
 
@@ -69,8 +72,8 @@ public class PlaneDetectionManager : MonoBehaviour
             {
                 if (plane != hitPlane)
                     plane.gameObject.SetActive(false);
-                // else
-                //     plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;
+                else
+                    plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;
             }
 
             _planeSelectionDone = true;
@@ -90,8 +93,10 @@ public class PlaneDetectionManager : MonoBehaviour
             Vector3 spawnPosition = new Vector3(randomPosition.x, plane.transform.position.y, randomPosition.y);
 
             GameObject obj = Instantiate(_prefab, spawnPosition, Quaternion.identity);
+            TargetMovement targetMovement = obj.GetComponent<TargetMovement>();
 
-            obj.GetComponent<TargetMovement>().PlaneBoundary = plane.boundary.ToArray();
+            targetMovement.PlaneBoundary = plane.boundary.ToArray();
+            _targetMovements.Add(targetMovement);
         }
     }
 
@@ -101,5 +106,13 @@ public class PlaneDetectionManager : MonoBehaviour
         Vector2 max = new Vector2(plane.center.x + plane.extents.x / 2, plane.center.z + plane.extents.y / 2);
 
         return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
+    }
+
+    public void StartGame()
+    {
+        _canvas.SetActive(false);
+
+        foreach (var target in _targetMovements)
+            target.enabled = true;
     }
 }
