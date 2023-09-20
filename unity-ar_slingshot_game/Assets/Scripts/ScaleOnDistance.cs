@@ -11,9 +11,7 @@ public class ScaleOnDistance : MonoBehaviour
 
     private void Update()
     {
-        float distance = Vector3.Distance(transform.position, _arCamera.position);
-
-        transform.localScale = CalculateScaleFactor(distance);
+        transform.localScale = CalculateScaleFactor(Vector3.Distance(transform.position, _arCamera.position));
     }
 
     private Vector3 CalculateScaleFactor(float distance)

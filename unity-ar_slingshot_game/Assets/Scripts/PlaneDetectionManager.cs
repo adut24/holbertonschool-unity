@@ -23,15 +23,16 @@ public class PlaneDetectionManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _text;
     [SerializeField]
-    private Button _startButton;
+    private Canvas _detectionCanvas;
+    [SerializeField]
+    private Canvas _gameCanvas;
     [SerializeField]
     private GameObject _prefab;
     [SerializeField]
     private int _numberTarget = 5;
     [SerializeField]
-    private GameObject _canvas;
+    private GameManager _gameManager;
     private List<ARRaycastHit> _hits = new List<ARRaycastHit>();
-    private List<TargetMovement> _targetMovements = new List<TargetMovement>();
     private bool _planeSelectionDone = false;
 
 
@@ -72,47 +73,42 @@ public class PlaneDetectionManager : MonoBehaviour
             {
                 if (plane != hitPlane)
                     plane.gameObject.SetActive(false);
-                else
-                    plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;
+/*                else
+                    plane.gameObject.GetComponent<ARPlaneMeshVisualizer>().enabled = false;*/
             }
-
             _planeSelectionDone = true;
-            _backgroundImage.color = Color.clear;
-            _text.gameObject.SetActive(false);
-            _startButton.gameObject.SetActive(true);
-
-            InstantiateTarget(hitPlane);
+            SpawnTargets(hitPlane);
+            _detectionCanvas.gameObject.SetActive(false);
+            _gameCanvas.gameObject.SetActive(true);
         }
     }
 
-    private void InstantiateTarget(ARPlane plane)
+    private void SpawnTargets(ARPlane plane)
     {
+        List<TargetMovement> targets = new List<TargetMovement>();
+
         for (int i = 0; i < _numberTarget; i++)
         {
-            Vector2 randomPosition = GetRandomPointOnPlane(plane);
-            Vector3 spawnPosition = new Vector3(randomPosition.x, plane.transform.position.y, randomPosition.y);
+            Pose randomPoseOnPlane = GetRandomPoseOnPlane(plane);
 
-            GameObject obj = Instantiate(_prefab, spawnPosition, Quaternion.identity);
+            GameObject obj = Instantiate(_prefab, randomPoseOnPlane.position, randomPoseOnPlane.rotation);
             TargetMovement targetMovement = obj.GetComponent<TargetMovement>();
 
             targetMovement.PlaneBoundary = plane.boundary.ToArray();
-            _targetMovements.Add(targetMovement);
+            targets.Add(targetMovement);
         }
+        _gameManager.Targets = targets.ToArray();
     }
 
-    private Vector2 GetRandomPointOnPlane(ARPlane plane)
+    private Pose GetRandomPoseOnPlane(ARPlane plane)
     {
         Vector2 min = new Vector2(plane.center.x - plane.extents.x / 2, plane.center.z - plane.extents.y / 2);
         Vector2 max = new Vector2(plane.center.x + plane.extents.x / 2, plane.center.z + plane.extents.y / 2);
 
-        return new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
+        return new Pose(new Vector3(Random.Range(min.x, max.x), 
+                                    plane.transform.position.y, 
+                                    Random.Range(min.y, max.y)), 
+                        Quaternion.identity);
     }
 
-    public void StartGame()
-    {
-        _canvas.SetActive(false);
-
-        foreach (var target in _targetMovements)
-            target.enabled = true;
-    }
 }

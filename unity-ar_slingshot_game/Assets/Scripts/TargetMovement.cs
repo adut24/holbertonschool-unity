@@ -7,13 +7,11 @@ public class TargetMovement : MonoBehaviour
 {
     [SerializeField]
     private float _moveSpeed;
-
     private float _minX;
     private float _maxX;
     private float _minZ;
     private float _maxZ;
     private Vector3 _targetPosition;
-
     public Vector2[] PlaneBoundary { get; set; }
 
     private void OnEnable()
