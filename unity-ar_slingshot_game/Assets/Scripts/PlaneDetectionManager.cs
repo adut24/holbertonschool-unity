@@ -105,10 +105,9 @@ public class PlaneDetectionManager : MonoBehaviour
         Vector2 min = new Vector2(plane.center.x - plane.extents.x / 2, plane.center.z - plane.extents.y / 2);
         Vector2 max = new Vector2(plane.center.x + plane.extents.x / 2, plane.center.z + plane.extents.y / 2);
 
-        return new Pose(new Vector3(Random.Range(min.x, max.x), 
-                                    plane.transform.position.y, 
-                                    Random.Range(min.y, max.y)), 
-                        Quaternion.identity);
+        Vector3 position = new Vector3(Random.Range(min.x, max.x), plane.transform.position.y, Random.Range(min.y, max.y));
+
+        return new Pose(position, Quaternion.identity);
     }
 
 }

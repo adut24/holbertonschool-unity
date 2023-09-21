@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _scoreText;
     [SerializeField]
     private TextMeshProUGUI _ammoLeft;
+    private bool _isGameStarted = false;
     public TargetMovement[] Targets { get; set; }
     public int NumberAmmo 
     { 
@@ -35,6 +36,12 @@ public class GameManager : MonoBehaviour
                 value = 1;
             _numberAmmo = value;
         }
+    }
+
+    private void Update()
+    {
+        if (_isGameStarted)
+            _scoreText.text = "0";
     }
 
     /// <summary>
@@ -51,6 +58,8 @@ public class GameManager : MonoBehaviour
 
         foreach (TargetMovement target in Targets)
             target.enabled = true;
+
+        _ammoLeft.text = NumberAmmo.ToString();
     }
 
     /// <summary>
