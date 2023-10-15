@@ -5,10 +5,5 @@ using UnityEngine;
 /// </summary>
 public class FollowCamera : MonoBehaviour
 {
-    public float distanceFromCamera = 2f;
-
-    private void Update()
-    {
-        transform.position = Camera.main.transform.position + Camera.main.transform.forward * distanceFromCamera;
-    }
+    private void Update() => transform.position = Camera.main.transform.position + Camera.main.transform.forward;
 }

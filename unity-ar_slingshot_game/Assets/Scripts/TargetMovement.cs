@@ -1,4 +1,8 @@
+using Unity.AI.Navigation;
+
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.XR.ARFoundation;
 
 /// <summary>
 /// Manages the target's movements.
@@ -7,50 +11,39 @@ public class TargetMovement : MonoBehaviour
 {
     [SerializeField]
     private float _moveSpeed;
-    private float _minX;
-    private float _maxX;
-    private float _minZ;
-    private float _maxZ;
-    private Vector3 _targetPosition;
-    public Vector2[] PlaneBoundary { get; set; }
+    [SerializeField]
+    private NavMeshAgent _navMeshAgent;
+    public int Points { get; set; } = 10;
+    public ARPlane Plane { get; set; }
 
-    private void OnEnable()
+    private void OnEnable() => RandomizeTargetPosition();
+
+    private void Update()
     {
-        AssignMinMaxValue();
-        RandomizeTargetPosition();
-    }
-
-    private void Update() => MoveTarget();
-
-    private void MoveTarget()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _moveSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, _targetPosition) < 0.1f)
+        if (_navMeshAgent.remainingDistance < 0.1f)
             RandomizeTargetPosition();
-    }
-
-    private void AssignMinMaxValue()
-    {
-        _minX = PlaneBoundary[0].x;
-        _maxX = PlaneBoundary[0].x;
-        _minZ = PlaneBoundary[0].y;
-        _maxZ = PlaneBoundary[0].y;
-
-        for (int i = 1; i < PlaneBoundary.Length; i++)
-        {
-            _minX = Mathf.Min(_minX, PlaneBoundary[i].x);
-            _maxX = Mathf.Max(_maxX, PlaneBoundary[i].x);
-            _minZ = Mathf.Min(_minZ, PlaneBoundary[i].y);
-            _maxZ = Mathf.Max(_maxZ, PlaneBoundary[i].y);
-        }
     }
 
     private void RandomizeTargetPosition()
     {
-        float randomX = Random.Range(_minX, _maxX);
-        float randomZ = Random.Range(_minZ, _maxZ);
+        Vector3 randomPoint = RandomPointOnNavMesh(30f);
 
-        _targetPosition = new Vector3(randomX, transform.position.y, randomZ);
+        while (Vector3.Distance(randomPoint, transform.position) < 1.0f)
+            randomPoint = RandomPointOnNavMesh(30f);
+
+        _navMeshAgent.SetDestination(randomPoint);
+    }
+
+    private Vector3 RandomPointOnNavMesh(float samplingRadius)
+    {
+        NavMeshHit hit;
+        Vector3 randomPoint = Vector3.zero;
+
+        Vector3 randomPosition = transform.position + Random.insideUnitSphere * samplingRadius;
+
+        if (NavMesh.SamplePosition(randomPosition, out hit, samplingRadius, NavMesh.AllAreas))
+            randomPoint = hit.position;
+
+        return new Vector3(randomPoint.x, Plane.transform.position.y, randomPoint.z);
     }
 }

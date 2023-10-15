@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: glow
-  m_Shader: {fileID: -6465566751694194690, guid: eea6fb454c2032943abd3733f20c149f, type: 3}
+  m_Name: disintegrate
+  m_Shader: {fileID: -6465566751694194690, guid: 7509424a7a7751c439255cfc97709c34, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,17 +37,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _GlowStrength: 0.06
-    - _Glow_strength: 1
+    - _DisintegrationSpeed: 0.65
+    - _FragmentsScale: 3000
+    - _Fragments_scale: 300
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 0, b: 0, a: 0}
-    - _Base_color: {r: 0.54013884, g: 0.07088822, b: 0.5566038, a: 0}
-    - _GlowColor: {r: 0, g: 0.9806142, b: 1, a: 0}
-    - _Glow_color: {r: 0, g: 1, b: 0, a: 0}
+    - _BaseColor: {r: 0.0925596, g: 0.9433962, b: 0.5118022, a: 0}
+    - _Base_color: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3556372106519477612
+--- !u!114 &4459302782279047467
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

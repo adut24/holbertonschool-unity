@@ -1,8 +1,10 @@
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 
 /// <summary>
 /// Manages the different states of the game.
@@ -12,9 +14,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Canvas _gameCanvas;
     [SerializeField]
+    private GameObject _prefab;
+    [SerializeField]
     private GameObject _ammo;
     [SerializeField]
     private int _numberAmmo;
+    [SerializeField]
+    private int _numberTarget = 5;
     [SerializeField]
     private Button _startButton;
     [SerializeField]
@@ -26,7 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _ammoLeft;
     private bool _isGameStarted = false;
-    public TargetMovement[] Targets { get; set; }
+    public ARPlane Plane { get; set; }
+    public int Score { get; set; }
+
     public int NumberAmmo 
     { 
         get => _numberAmmo;
@@ -41,7 +49,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (_isGameStarted)
-            _scoreText.text = "0";
+            _scoreText.text = Score.ToString();
     }
 
     /// <summary>
@@ -53,11 +61,9 @@ public class GameManager : MonoBehaviour
         _backgroundImage.gameObject.SetActive(true);
         _backgroundImage2.gameObject.SetActive(true);
 
-        Vector3 position = Camera.main.ScreenToWorldPoint(Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0))) + Camera.main.transform.forward * 2f;
-        Instantiate(_ammo, position, Quaternion.identity);
-
-        foreach (TargetMovement target in Targets)
-            target.enabled = true;
+        PlacePrefabsOnNavMesh();
+/*        Vector3 centerPosition = Camera.main.ScreenToWorldPoint(Camera.main.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0))) + Camera.main.transform.forward;
+        Instantiate(_ammo, centerPosition, Quaternion.identity);*/
 
         _ammoLeft.text = NumberAmmo.ToString();
     }
@@ -71,4 +77,24 @@ public class GameManager : MonoBehaviour
     /// Quit the application.
     /// </summary>
     public void QuitGame() => Application.Quit();
+
+    private void PlacePrefabsOnNavMesh()
+    {
+        for (int i = 0; i < _numberTarget; i++)
+        {
+            GameObject obj = Instantiate(_prefab, Vector3.zero, Quaternion.identity, Plane.transform);
+            NavMeshAgent agent = obj.GetComponent<NavMeshAgent>();
+            TargetMovement targetMovement = obj.GetComponent<TargetMovement>();
+
+            targetMovement.Plane = Plane;
+
+            Vector3 randomPos = Random.insideUnitSphere * 1.6f;
+            randomPos.x += Plane.transform.position.x;
+            randomPos.z += Plane.transform.position.z;
+
+            agent.Warp(new Vector3(randomPos.x, Plane.transform.position.y, randomPos.z));
+            obj.transform.localPosition -= new Vector3(0, 0.1f, 0);
+            agent.enabled = true;
+        }
+    }
 }

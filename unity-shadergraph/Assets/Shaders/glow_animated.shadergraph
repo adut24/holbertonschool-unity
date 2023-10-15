@@ -465,10 +465,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1103.9998779296875,
-            "y": 451.20001220703127,
-            "width": 206.39984130859376,
-            "height": 128.79998779296876
+            "x": -933.6000366210938,
+            "y": 446.4000244140625,
+            "width": 206.4000244140625,
+            "height": 128.800048828125
         }
     },
     "m_Slots": [
@@ -579,7 +579,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Minimum glow strength",
     "m_DefaultReferenceName": "_Minimum_glow_strength",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MinimumGlowStrength",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -608,9 +608,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1104.0,
-            "y": 669.5999755859375,
-            "width": 185.60003662109376,
+            "x": -913.5999145507813,
+            "y": 631.2000122070313,
+            "width": 185.599853515625,
             "height": 141.60003662109376
         }
     },
@@ -650,10 +650,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1757.60009765625,
-            "y": 660.0,
+            "x": -1516.800048828125,
+            "y": 631.2000122070313,
             "width": 160.0,
-            "height": 33.5999755859375
+            "height": 33.60003662109375
         }
     },
     "m_Slots": [
@@ -707,10 +707,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -780.7999267578125,
-            "y": 434.3999938964844,
-            "width": 163.20001220703126,
-            "height": 141.60000610351563
+            "x": -668.7999877929688,
+            "y": 429.60003662109377,
+            "width": 163.20010375976563,
+            "height": 141.60003662109376
         }
     },
     "m_Slots": [
@@ -821,10 +821,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1537.60009765625,
-            "y": 528.7999877929688,
+            "x": -1297.60009765625,
+            "y": 524.0,
             "width": 125.60009765625,
-            "height": 117.60003662109375
+            "height": 117.5999755859375
         }
     },
     "m_Slots": [
@@ -951,7 +951,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Maximum glow strength",
     "m_DefaultReferenceName": "_Maximum_glow_strength",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_MaximumGlowStrength",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -1087,10 +1087,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1612.800048828125,
-            "y": 917.5999755859375,
+            "x": -1357.60009765625,
+            "y": 873.6000366210938,
             "width": 197.60009765625,
-            "height": 33.60003662109375
+            "height": 33.5999755859375
         }
     },
     "m_Slots": [
@@ -1195,7 +1195,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Glow color",
     "m_DefaultReferenceName": "_Glow_color",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_GlowColor",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -1226,10 +1226,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1348.800048828125,
-            "y": 793.5999755859375,
-            "width": 127.199951171875,
-            "height": 100.800048828125
+            "x": -1108.800048828125,
+            "y": 772.800048828125,
+            "width": 127.2000732421875,
+            "height": 100.79998779296875
         }
     },
     "m_Slots": [
@@ -1310,9 +1310,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -512.7999267578125,
-            "y": 333.5999755859375,
-            "width": 130.39993286132813,
+            "x": -400.7998962402344,
+            "y": 328.79998779296877,
+            "width": 130.39996337890626,
             "height": 117.60003662109375
         }
     },
@@ -1387,8 +1387,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1612.800048828125,
-            "y": 744.0,
+            "x": -1357.60009765625,
+            "y": 756.0,
             "width": 200.800048828125,
             "height": 33.5999755859375
         }
@@ -1680,10 +1680,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1349.5999755859375,
-            "y": 528.7999877929688,
-            "width": 127.9998779296875,
-            "height": 93.60009765625
+            "x": -1109.60009765625,
+            "y": 524.0,
+            "width": 128.0001220703125,
+            "height": 93.5999755859375
         }
     },
     "m_Slots": [
@@ -1862,7 +1862,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Base color",
     "m_DefaultReferenceName": "_Base_color",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_BaseColor",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -2017,10 +2017,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -750.39990234375,
-            "y": 267.20001220703127,
-            "width": 131.99993896484376,
-            "height": 33.5999755859375
+            "x": -638.3999633789063,
+            "y": 262.3999938964844,
+            "width": 132.80007934570313,
+            "height": 33.60003662109375
         }
     },
     "m_Slots": [
@@ -2204,10 +2204,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1104.7999267578125,
-            "y": 171.99998474121095,
-            "width": 205.59991455078126,
-            "height": 128.8000030517578
+            "x": -933.6000366210938,
+            "y": 264.0000305175781,
+            "width": 206.4000244140625,
+            "height": 128.79998779296876
         }
     },
     "m_Slots": [
@@ -2329,7 +2329,7 @@
     "m_DefaultRefNameVersion": 1,
     "m_RefNameGeneratedByDisplayName": "Pulse frequency",
     "m_DefaultReferenceName": "_Pulse_frequency",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_PulseFrequency",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
@@ -2355,13 +2355,13 @@
     },
     "m_Name": "Time",
     "m_DrawState": {
-        "m_Expanded": true,
+        "m_Expanded": false,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1722.4000244140625,
-            "y": 423.2000427246094,
-            "width": 124.0,
-            "height": 172.79995727539063
+            "x": -1436.800048828125,
+            "y": 465.6000061035156,
+            "width": 79.199951171875,
+            "height": 76.80001831054688
         }
     },
     "m_Slots": [
