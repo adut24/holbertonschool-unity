@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Bowling.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  m_configObjects:
+    WebXR.Settings: {fileID: 11400000, guid: 1b02c0f2c3d79491b92f7a2f7614f020, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1774a08df7e3841f58ea5d01c4a3b840,
+      type: 2}
