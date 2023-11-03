@@ -5,27 +5,34 @@ using UnityEngine.XR;
 public class PlayerSpawn : MonoBehaviour
 {
 	private bool isPositionXR = false;
+
      private void Start()
     {
         if (CheckXRDevice.isPresent())
 		{
-			transform.position = new Vector3(-20, 0.5f, -24);
+			transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+			transform.eulerAngles = Vector3.zero;
 			isPositionXR = true;
 		}
 		else
-			transform.position = new Vector3(-20, 2.3f, -24);
+		{
+			transform.position = new Vector3(transform.position.x, 2.3f, transform.position.z);
+			transform.eulerAngles = Vector3.zero;
+		}
     }
 
 	private void Update()
 	{
 		if (CheckXRDevice.isPresent() && !isPositionXR)
 		{
-			transform.position = new Vector3(-20, 0.5f, -24);
+			transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+			transform.eulerAngles = Vector3.zero;
 			isPositionXR = true;
 		}
 		else if (!CheckXRDevice.isPresent() && isPositionXR)
 		{
-			transform.position = new Vector3(-20, 2.3f, -24);
+			transform.position = new Vector3(transform.position.x, 2.3f, transform.position.z);
+			transform.eulerAngles = Vector3.zero;
 			isPositionXR = false;
 		}
 	}
